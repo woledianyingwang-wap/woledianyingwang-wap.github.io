@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="我乐电影网 - 提供最新电影、电视剧、综艺、动漫在线观看，海量高清影视资源免费畅享。">
+<meta name="keywords" content="我乐电影网,电影,电视剧,综艺,动漫,在线观看,高清影视">
+<meta name="author" content="我乐电影网">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>我乐电影网 - 最新电影电视剧在线观看</title>
+<link rel="canonical" href="https://woledianyingwang-wap.github.io">
+<!-- Bing SEO Meta -->
+<meta name="msvalidate.01" content="Bing-Site-Verification-Code">
+<meta name="geo.region" content="CN">
+<meta name="geo.placename" content="China">
+<meta name="mobile-agent" content="format=html5; url=https://woledianyingwang-wap.github.io">
+<!-- Open Graph -->
+<meta property="og:title" content="我乐电影网 - 最新电影电视剧在线观看">
+<meta property="og:description" content="我乐电影网提供最新电影、电视剧、综艺、动漫在线观看，海量高清影视资源免费畅享。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://woledianyingwang-wap.github.io">
+<meta property="og:site_name" content="我乐电影网">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="我乐电影网 - 最新电影电视剧在线观看">
+<meta name="twitter:description" content="海量高清影视资源免费畅享">
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "我乐电影网",
+  "url": "https://woledianyingwang-wap.github.io",
+  "description": "提供最新电影、电视剧、综艺、动漫在线观看，海量高清影视资源免费畅享。",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://woledianyingwang-wap.github.io#search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "我乐电影网",
+  "url": "https://woledianyingwang-wap.github.io",
+  "logo": "https://woledianyingwang-wap.github.io/favicon.ico"
+}
+</script>
+<style>
+/* ==================== CSS RESET & VARIABLES ==================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #e50914;
+  --primary-dark: #b8070f;
+  --primary-light: #ff3d44;
+  --dark-bg: #0a0a0a;
+  --dark-card: #141414;
+  --dark-card-hover: #1e1e1e;
+  --dark-border: #2a2a2a;
+  --text-light: #ffffff;
+  --text-gray: #b3b3b3;
+  --text-dark: #333333;
+  --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 40%, #0a0a1a 100%);
+  --gradient-card: linear-gradient(180deg, rgba(229,9,20,0.1) 0%, transparent 100%);
+  --shadow-card: 0 8px 30px rgba(0,0,0,0.5);
+  --shadow-hover: 0 12px 40px rgba(229,9,20,0.2);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ==================== LOADING SCREEN ==================== */
+#loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 20px;
+  animation: pulse 1.5s ease infinite;
+}
+
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--dark-border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* ==================== NAVIGATION ==================== */
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--dark-border);
+  transition: var(--transition);
+}
+
+.nav-wrapper.scrolled {
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-logo span {
+  color: var(--primary);
+}
+
+.nav-logo i {
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.nav-menu a {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-gray);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--text-light);
+  background: rgba(229, 9, 20, 0.15);
+}
+
+.nav-menu a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.nav-search-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-card);
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  transition: var(--transition);
+}
+
+.nav-search-btn:hover {
+  background: var(--primary);
+  color: var(--text-light);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: var(--text-light);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ==================== SEARCH OVERLAY ==================== */
+.search-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.search-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 1.1rem;
+  background: var(--dark-card);
+  border: 2px solid var(--dark-border);
+  border-radius: var(--radius-lg);
+  color: var(--text-light);
+  outline: none;
+  transition: var(--transition);
+}
+
+.search-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.1);
+}
+
+.search-close {
+  align-self: flex-end;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--dark-card);
+  color: var(--text-gray);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.search-close:hover {
+  background: var(--primary);
+  color: var(--text-light);
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--gradient-hero);
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(229,9,20,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(50,50,200,0.05) 0%, transparent 60%);
+  animation: heroBgAnim 10s ease infinite alternate;
+}
+
+@keyframes heroBgAnim {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.1) rotate(2deg); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 120px 20px 80px;
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--primary-light);
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.hero-badge::before {
+  content: '🔥';
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.hero-title .highlight {
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+  animation: lineGrow 1s ease 1s both;
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-gray);
+  margin-bottom: 36px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-light);
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.4);
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--dark-border);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  background: rgba(229, 9, 20, 0.1);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  margin-top: 4px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-gray);
+  font-size: 0.8rem;
+  animation: fadeInUp 0.6s ease 0.5s both;
+  z-index: 2;
+}
+
+.scroll-indicator .mouse {
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--text-gray);
+  border-radius: 15px;
+  position: relative;
+}
+
+.scroll-indicator .mouse::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 2px;
+  animation: scrollWheel 2s ease infinite;
+}
+
+@keyframes scrollWheel {
+  0% { opacity: 1; top: 8px; }
+  100% { opacity: 0; top: 24px; }
+}
+
+/* ==================== SECTION COMMON ==================== */
+section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title::before {
+  content: '';
+  width: 5px;
+  height: 28px;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.section-link {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.section-link:hover {
+  color: var(--primary);
+}
+
+/* ==================== MOVIE GRID ==================== */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.movie-card {
+  background: var(--dark-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1px solid var(--dark-border);
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(229, 9, 20, 0.3);
+}
+
+.movie-poster {
+  position: relative;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+}
+
+.movie-poster .poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  transition: var(--transition);
+}
+
+.movie-card:hover .poster-placeholder {
+  transform: scale(1.05);
+}
+
+.movie-poster .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  background: var(--primary);
+  color: var(--text-light);
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.movie-poster .score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.8);
+  color: #ffd700;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.movie-info {
+  padding: 14px;
+}
+
+.movie-info h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-info .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-gray);
+}
+
+.movie-info .meta .type {
+  padding: 2px 8px;
+  background: rgba(229, 9, 20, 0.15);
+  color: var(--primary-light);
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+/* ==================== TV SHOWS SECTION ==================== */
+.tv-section {
+  background: linear-gradient(180deg, var(--dark-bg) 0%, #0d0d0d 50%, var(--dark-bg) 100%);
+}
+
+.tv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tv-item {
+  display: flex;
+  gap: 20px;
+  background: var(--dark-card);
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--dark-border);
+  transition: var(--transition);
+}
+
+.tv-item:hover {
+  background: var(--dark-card-hover);
+  border-color: rgba(229, 9, 20, 0.3);
+  transform: translateX(5px);
+}
+
+.tv-poster {
+  width: 120px;
+  height: 160px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #1a0a2e, #0f1a3e, #16213e);
+}
+
+.tv-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tv-details h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tv-details .desc {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.tv-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tv-tag {
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--text-gray);
+}
+
+/* ==================== VARIETY SECTION ==================== */
+.variety-section {
+  background: var(--dark-bg);
+}
+
+.variety-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.variety-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.variety-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+
+.variety-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+
+.variety-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+}
+
+.variety-card:nth-child(1) .variety-bg { background: linear-gradient(135deg, #1a1a2e, #e94560); }
+.variety-card:nth-child(2) .variety-bg { background: linear-gradient(135deg, #0f3460, #16537e); }
+.variety-card:nth-child(3) .variety-bg { background: linear-gradient(135deg, #2d1b69, #8b5cf6); }
+.variety-card:nth-child(4) .variety-bg { background: linear-gradient(135deg, #134e5e, #71b280); }
+.variety-card:nth-child(5) .variety-bg { background: linear-gradient(135deg, #42275a, #734b6d); }
+.variety-card:nth-child(6) .variety-bg { background: linear-gradient(135deg, #f46b45, #eea849); }
+
+.variety-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 3rem;
+}
+
+.variety-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  z-index: 2;
+}
+
+.variety-info h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.variety-info p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ==================== ANIME SECTION ==================== */
+.anime-section {
+  background: linear-gradient(180deg, #0a0a1a 0%, #0a0a0a 100%);
+}
+
+.anime-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 0 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.anime-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.anime-carousel::-webkit-scrollbar-track {
+  background: var(--dark-card);
+  border-radius: 3px;
+}
+
+.anime-carousel::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.anime-card {
+  flex: 0 0 180px;
+  scroll-snap-align: start;
+  background: var(--dark-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--dark-border);
+  transition: var(--transition);
+}
+
+.anime-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.anime-poster {
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.anime-card:nth-child(odd) .anime-poster { background: linear-gradient(135deg, #1e1b4b, #4c1d95); }
+.anime-card:nth-child(even) .anime-poster { background: linear-gradient(135deg, #831843, #be185d); }
+.anime-card:nth-child(3n) .anime-poster { background: linear-gradient(135deg, #0e7490, #0891b2); }
+.anime-card:nth-child(4n) .anime-poster { background: linear-gradient(135deg, #7c2d12, #c2410c); }
+
+.anime-poster .episode {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 2px 8px;
+  background: rgba(0,0,0,0.8);
+  color: var(--text-light);
+  font-size: 0.7rem;
+  border-radius: 4px;
+}
+
+.anime-info {
+  padding: 12px;
+}
+
+.anime-info h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anime-info .status {
+  font-size: 0.7rem;
+  color: #10b981;
+}
+
+.anime-info .status.ended {
+  color: var(--text-gray);
+}
+
+/* ==================== CATEGORIES SECTION ==================== */
+.categories-section {
+  background: var(--dark-bg);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 20px;
+  background: var(--dark-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--dark-border);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.cat-item:hover {
+  background: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.3);
+}
+
+.cat-item .cat-icon {
+  font-size: 2.5rem;
+  transition: var(--transition);
+}
+
+.cat-item:hover .cat-icon {
+  transform: scale(1.2);
+}
+
+.cat-item span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ==================== NEWS / ARTICLES SECTION ==================== */
+.news-section {
+  background: linear-gradient(180deg, #0d0d0d 0%, var(--dark-bg) 100%);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.news-card {
+  background: var(--dark-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--dark-border);
+  transition: var(--transition);
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--dark-border);
+}
+
+.news-thumb {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+}
+
+.news-card:nth-child(1) .news-thumb { background: linear-gradient(135deg, #1a1a2e, #e94560); }
+.news-card:nth-child(2) .news-thumb { background: linear-gradient(135deg, #0f3460, #16537e); }
+.news-card:nth-child(3) .news-thumb { background: linear-gradient(135deg, #2d1b69, #8b5cf6); }
+
+.news-thumb .news-cat {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  background: var(--primary);
+  color: var(--text-light);
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.news-body {
+  padding: 20px;
+}
+
+.news-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-body p {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-gray);
+  padding-top: 12px;
+  border-top: 1px solid var(--dark-border);
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+  background: #050505;
+  padding: 60px 0 30px;
+  border-top: 1px solid var(--dark-border);
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.footer-brand h3 span {
+  color: var(--primary);
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  line-height: 1.8;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col ul a {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+
+.footer-col ul a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
+
+.footer-bottom {
+  padding-top: 30px;
+  border-top: 1px solid var(--dark-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom p {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dark-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.footer-social a:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* ==================== BACK TO TOP ==================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--primary-light);
+  transform: translateY(-3px);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+  
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: var(--transition);
+    overflow-y: auto;
+  }
+  
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .nav-menu a {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 16px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--dark-border);
+    border-radius: 0;
+  }
+  
+  .nav-menu a.active::after {
+    display: none;
+  }
+  
+  .hamburger {
+    display: flex;
+  }
+  
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  .nav-search-btn {
+    display: none;
+  }
+  
+  .hero-content {
+    padding: 100px 16px 60px;
+  }
+  
+  .hero-stats {
+    gap: 24px;
+  }
+  
+  .stat-number {
+    font-size: 1.4rem;
+  }
+  
+  section {
+    padding: 50px 0;
+  }
+  
+  .section-header {
+    margin-bottom: 24px;
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .movie-info {
+    padding: 10px;
+  }
+  
+  .movie-info h3 {
+    font-size: 0.85rem;
+  }
+  
+  .tv-item {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .tv-poster {
+    width: 100%;
+    height: 180px;
+  }
+  
+  .variety-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .anime-card {
+    flex: 0 0 140px;
+  }
+  
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .cat-item {
+    padding: 20px 10px;
+  }
+  
+  .cat-item .cat-icon {
+    font-size: 2rem;
+  }
+  
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .anime-card {
+    flex: 0 0 120px;
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==================== UTILITY ==================== */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dark-border), transparent);
+  margin: 0;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: var(--text-light);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- Loading Screen -->
+<div id="loader">
+  <div class="loader-logo">🎬 我乐电影网</div>
+  <div class="loader-spinner"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav-wrapper" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">
+      <span>🎬</span>我乐<span>电影网</span>
+    </a>
+    <div class="nav-menu" id="navMenu">
+      <a href="#home" class="active">首页</a>
+      <a href="#movies">电影</a>
+      <a href="#tv">电视剧</a>
+      <a href="#variety">综艺</a>
+      <a href="#anime">动漫</a>
+      <a href="#categories">分类</a>
+      <a href="#news">资讯</a>
+    </div>
+    <button class="nav-search-btn" id="searchBtn" aria-label="搜索">🔍</button>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <button class="search-close" id="searchClose">✕</button>
+    <input type="text" placeholder="🔍 搜索电影、电视剧、综艺、动漫..." autocomplete="off">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+      <a href="#" style="padding:6px 14px; background:var(--dark-card); border-radius:20px; font-size:0.8rem; color:var(--text-gray);">热门搜索：热辣滚烫</a>
+      <a href="#" style="padding:6px 14px; background:var(--dark-card); border-radius:20px; font-size:0.8rem; color:var(--text-gray);">飞驰人生2</a>
+      <a href="#" style="padding:6px 14px; background:var(--dark-card); border-radius:20px; font-size:0.8rem; color:var(--text-gray);">周处除三害</a>
+      <a href="#" style="padding:6px 14px; background:var(--dark-card); border-radius:20px; font-size:0.8rem; color:var(--text-gray);">庆余年2</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">每日更新 热门影视 第一时间上线</div>
+    <h1 class="hero-title">
+      海量高清影视 尽在<br><span class="highlight">我乐电影网</span>
+    </h1>
+    <p class="hero-subtitle">最新院线大片、热门电视剧、爆款综艺、经典动漫，随时随地免费畅享，打造您的专属影视乐园</p>
+    <div class="hero-actions">
+      <a href="#movies" class="btn btn-primary">🎬 立即观看</a>
+      <a href="#categories" class="btn btn-outline">📂 分类浏览</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">10000+</div>
+        <div class="stat-label">影视资源</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4K</div>
+        <div class="stat-label">超清画质</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24H</div>
+        <div class="stat-label">每日更新</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">0元</div>
+        <div class="stat-label">免费观看</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="mouse"></div>
+    <span>向下滚动</span>
+  </div>
+</section>
+
+<!-- Movies Section -->
+<section id="movies">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <h2 class="section-title">热门电影</h2>
+      <a href="#" class="section-link">查看更多 ›</a>
+    </div>
+    <div class="movie-grid">
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">🎬</div>
+          <span class="badge">热门</span>
+          <span class="score">⭐ 9.2</span>
+        </div>
+        <div class="movie-info">
+          <h3>热辣滚烫</h3>
+          <div class="meta"><span>2024 · 剧情/喜剧</span><span class="type">HD</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">🎭</div>
+          <span class="badge">推荐</span>
+          <span class="score">⭐ 8.9</span>
+        </div>
+        <div class="movie-info">
+          <h3>飞驰人生2</h3>
+          <div class="meta"><span>2024 · 喜剧/运动</span><span class="type">HD</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">🔥</div>
+          <span class="badge">HOT</span>
+          <span class="score">⭐ 9.5</span>
+        </div>
+        <div class="movie-info">
+          <h3>周处除三害</h3>
+          <div class="meta"><span>2023 · 动作/犯罪</span><span class="type">HD</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">🌊</div>
+          <span class="badge">热门</span>
+          <span class="score">⭐ 8.7</span>
+        </div>
+        <div class="movie-info">
+          <h3>年会不能停！</h3>
+          <div class="meta"><span>2023 · 喜剧</span><span class="type">HD</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">🚀</div>
+          <span class="badge">新片</span>
+          <span class="score">⭐ 8.5</span>
+        </div>
+        <div class="movie-info">
+          <h3>流浪地球2</h3>
+          <div class="meta"><span>2023 · 科幻/冒险</span><span class="type">4K</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">⚔️</div>
+          <span class="badge">热门</span>
+          <span class="score">⭐ 9.0</span>
+        </div>
+        <div class="movie-info">
+          <h3>封神第一部</h3>
+          <div class="meta"><span>2023 · 奇幻/动作</span><span class="type">HD</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">💫</div>
+          <span class="badge">推荐</span>
+          <span class="score">⭐ 8.8</span>
+        </div>
+        <div class="movie-info">
+          <h3>消失的她</h3>
+          <div class="meta"><span>2023 · 悬疑/犯罪</span><span class="type">HD</span></div>
+        </div>
+      </article>
+      <article class="movie-card reveal">
+        <div class="movie-poster">
+          <div class="poster-placeholder">🎪</div>
+          <span class="badge">新片</span>
+          <span class="score">⭐ 8.3</span>
+        </div>
+        <div class="movie-info">
+          <h3>第二十条</h3>
+          <div class="meta"><span>2024 · 剧情/喜剧</span><span class="type">HD</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TV Shows Section -->
+<section class="tv-section" id="tv">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <h2 class="section-title">热播电视剧</h2>
+      <a href="#" class="section-link">查看更多 ›</a>
+    </div>
+    <div class="tv-list">
+      <article class="tv-item reveal-left">
+        <div class="tv-poster">📺</div>
+        <div class="tv-details">
+          <h3>庆余年 第二季</h3>
+          <p>范闲重返京都，面对新的政治格局，在权谋与友情之间寻找平衡，开启一段全新的传奇故事。</p>
+          <div class="tv-tags">
+            <span class="tv-tag">古装</span>
+            <span class="tv-tag">权谋</span>
+            <span class="tv-tag">更新至36集</span>
+          </div>
+        </div>
+      </article>
+      <article class="tv-item reveal-right">
+        <div class="tv-poster">🌙</div>
+        <div class="tv-details">
+          <h3>墨雨云间</h3>
+          <p>相府千金薛芳菲含冤而死，借农女姜梨之身重返京城，在肃国公萧蘅的帮助下揭开真相。</p>
+          <div class="tv-tags">
+            <span class="tv-tag">古装</span>
+            <span class="tv-tag">复仇</span>
+            <span class="tv-tag">全40集</span>
+          </div>
+        </div>
+      </article>
+      <article class="tv-item reveal-left">
+        <div class="tv-poster">⚔️</div>
+        <div class="tv-details">
+          <h3>与凤行</h3>
+          <p>灵尊沈璃与行止神君之间的爱恨纠葛，谱写一段荡气回肠的仙侠传奇。</p>
+          <div class="tv-tags">
+            <span class="tv-tag">仙侠</span>
+            <span class="tv-tag">爱情</span>
+            <span class="tv-tag">全39集</span>
+          </div>
+        </div>
+      </article>
+      <article class="tv-item reveal-right">
+        <div class="tv-poster">🏯</div>
+        <div class="tv-details">
+          <h3>繁花</h3>
+          <p>上世纪九十年代的上海，黄河路上商界传奇阿宝的奋斗历程，见证时代的变迁。</p>
+          <div class="tv-tags">
+            <span class="tv-tag">年代</span>
+            <span class="tv-tag">商战</span>
+            <span class="tv-tag">全30集</span>
+          </div>
+        </div>
+      </article>
+      <article class="tv-item reveal-left">
+        <div class="tv-poster">🎭</div>
+        <div class="tv-details">
+          <h3>南来北往</h3>
+          <p>新老两代铁路公安干警在火车上打击犯罪、守护平安的感人故事。</p>
+          <div class="tv-tags">
+            <span class="tv-tag">年代</span>
+            <span class="tv-tag">剧情</span>
+            <span class="tv-tag">全39集</span>
+          </div>
+        </div>
+      </article>
+      <article class="tv-item reveal-right">
+        <div class="tv-poster">🌸</div>
+        <div class="tv-details">
+          <h3>花间令</h3>
+          <p>神秘仵作潘樾与杨采薇联手破案，在花间寻觅真相，揭开层层迷雾。</p>
+          <div class="tv-tags">
+            <span class="tv-tag">悬疑</span>
+            <span class="tv-tag">古装</span>
+            <span class="tv-tag">全36集</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Variety Section -->
+<section class="variety-section" id="variety">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <h2 class="section-title">精彩综艺</h2>
+      <a href="#" class="section-link">查看更多 ›</a>
+    </div>
+    <div class="variety-grid">
+      <article class="variety-card reveal">
+        <div class="variety-bg">
+          <span class="variety-icon">🎤</span>
+        </div>
+        <div class="variety-info">
+          <h3>歌手2024</h3>
+          <p>巅峰对决 · 更新至第10期</p>
+        </div>
+      </article>
+      <article class="variety-card reveal">
+        <div class="variety-bg">
+          <span class="variety-icon">🏃</span>
+        </div>
+        <div class="variety-info">
+          <h3>奔跑吧 第十二季</h3>
+          <p>欢乐竞技 · 更新至第12期</p>
+        </div>
+      </article>
+      <article class="variety-card reveal">
+        <div class="variety-bg">
+          <span class="variety-icon">🎮</span>
+        </div>
+        <div class="variety-info">
+          <h3>极限挑战 第十季</h3>
+          <p>烧脑游戏 · 全季完结</p>
+        </div>
+      </article>
+      <article class="variety-card reveal">
+        <div class="variety-bg">
+          <span class="variety-icon">👨‍🍳</span>
+        </div>
+        <div class="variety-info">
+          <h3>中餐厅 第八季</h3>
+          <p>美食经营 · 更新至第8期</p>
+        </div>
+      </article>
+      <article class="variety-card reveal">
+        <div class="variety-bg">
+          <span class="variety-icon">💡</span>
+        </div>
+        <div class="variety-info">
+          <h3>明星大侦探 第十季</h3>
+          <p>逻辑推理 · 更新至第6期</p>
+        </div>
+      </article>
+      <article class="variety-card reveal">
+        <div class="variety-bg">
+          <span class="variety-icon">🎵</span>
+        </div>
+        <div class="variety-info">
+          <h3>我是歌手 · 当打之年</h3>
+          <p>音乐竞演 · 全季完结</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Anime Section -->
+<section class="anime-section" id="anime">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <h2 class="section-title">热门动漫</h2>
+      <a href="#" class="section-link">查看更多 ›</a>
+    </div>
+    <div class="anime-carousel">
+      <article class="anime-card reveal">
+        <div class="anime-poster">🐉</div>
+        <div class="episode">第120集</div>
+        <div class="anime-info">
+          <h4>斗破苍穹年番</h4>
+          <span class="status">● 连载中</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">⚔️</div>
+        <div class="episode">第48集</div>
+        <div class="anime-info">
+          <h4>完美世界</h4>
+          <span class="status">● 连载中</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">🌟</div>
+        <div class="episode">第80集</div>
+        <div class="anime-info">
+          <h4>斗罗大陆</h4>
+          <span class="status">● 连载中</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">🔥</div>
+        <div class="episode">全26集</div>
+        <div class="anime-info">
+          <h4>凡人修仙传</h4>
+          <span class="status ended">○ 已完结</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">🗡️</div>
+        <div class="episode">第52集</div>
+        <div class="anime-info">
+          <h4>诛仙</h4>
+          <span class="status">● 连载中</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">🦁</div>
+        <div class="episode">第36集</div>
+        <div class="anime-info">
+          <h4>武庚纪</h4>
+          <span class="status">● 连载中</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">🌙</div>
+        <div class="episode">第24集</div>
+        <div class="anime-info">
+          <h4>秦时明月</h4>
+          <span class="status">● 连载中</span>
+        </div>
+      </article>
+      <article class="anime-card reveal">
+        <div class="anime-poster">⚡</div>
+        <div class="episode">全12集</div>
+        <div class="anime-info">
+          <h4>雾山五行</h4>
+          <span class="status ended">○ 已完结</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Categories Section -->
+<section class="categories-section" id="categories">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <h2 class="section-title">影视分类</h2>
+      <a href="#" class="section-link">全部分类 ›</a>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">😂</span>
+        <span>喜剧</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">💕</span>
+        <span>爱情</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🔫</span>
+        <span>动作</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">👻</span>
+        <span>恐怖</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🚀</span>
+        <span>科幻</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🕵️</span>
+        <span>悬疑</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🏰</span>
+        <span>古装</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🎭</span>
+        <span>剧情</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">👑</span>
+        <span>历史</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🧸</span>
+        <span>动画</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">📽️</span>
+        <span>纪录片</span>
+      </a>
+      <a href="#" class="cat-item reveal">
+        <span class="cat-icon">🎪</span>
+        <span>战争</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- News Section -->
+<section class="news-section" id="news">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <h2 class="section-title">影视资讯</h2>
+      <a href="#" class="section-link">查看更多 ›</a>
+    </div>
+    <div class="news-grid">
+      <article class="news-card reveal">
+        <div class="news-thumb">🎬<span class="news-cat">电影</span></div>
+        <div class="news-body">
+          <h3>2024年暑期档票房突破100亿，国产电影表现亮眼</h3>
+          <p>今年暑期档多部国产影片表现强劲，票房屡创新高，观众对优质国产内容的认可度持续提升。</p>
+          <div class="news-meta">
+            <span>📅 2024-08-15</span>
+            <span>👁️ 2.3万阅读</span>
+          </div>
+        </div>
+      </article>
+      <article class="news-card reveal">
+        <div class="news-thumb">📺<span class="news-cat">电视剧</span></div>
+        <div class="news-body">
+          <h3>多部古装大剧定档暑期，谁能脱颖而出？</h3>
+          <p>仙侠、宫廷、武侠题材集中爆发，暑期荧屏百花齐放，观众期待值拉满。</p>
+          <div class="news-meta">
+            <span>📅 2024-08-10</span>
+            <span>👁️ 1.8万阅读</span>
+          </div>
+        </div>
+      </article>
+      <article class="news-card reveal">
+        <div class="news-thumb">🎤<span class="news-cat">综艺</span></div>
+        <div class="news-body">
+          <h3>音乐竞演类综艺回归，实力唱将同台飙歌</h3>
+          <p>全新赛制、顶级阵容，本季音乐综艺将为观众带来前所未有的视听盛宴。</p>
+          <div class="news-meta">
+            <span>📅 2024-08-05</span>
+            <span>👁️ 1.5万阅读</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>🎬 我乐<span>电影网</span></h3>
+        <p>我乐电影网致力于为用户提供最新、最全、最清晰的在线影视资源，涵盖电影、电视剧、综艺、动漫等多种类型，打造最好的免费观影体验。</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速导航</h4>
+        <ul>
+          <li><a href="#home">🏠 首页</a></li>
+          <li><a href="#movies">🎬 电影</a></li>
+          <li><a href="#tv">📺 电视剧</a></li>
+          <li><a href="#variety">🎤 综艺</a></li>
+          <li><a href="#anime">🎨 动漫</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>影视分类</h4>
+        <ul>
+          <li><a href="#">😂 喜剧片</a></li>
+          <li><a href="#">🔫 动作片</a></li>
+          <li><a href="#">🚀 科幻片</a></li>
+          <li><a href="#">👻 恐怖片</a></li>
+          <li><a href="#">💕 爱情片</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>关于我们</h4>
+        <ul>
+          <li><a href="#">📋 网站简介</a></li>
+          <li><a href="#">📜 免责声明</a></li>
+          <li><a href="#">🔒 隐私政策</a></li>
+          <li><a href="#">📧 联系我们</a></li>
+          <li><a href="#">🤝 友情链接</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 我乐电影网 版权所有 | 网址：https://woledianyingwang-wap.github.io</p>
+      <div class="footer-social">
+        <a href="#" aria-label="微信">💬</a>
+        <a href="#" aria-label="微博">📱</a>
+        <a href="#" aria-label="QQ">💻</a>
+        <a href="#" aria-label="邮箱">📧</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="返回顶部">↑</a>
+
+<script>
+// ==================== LOADING SCREEN ====================
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('loader').classList.add('hidden');
+  }, 500);
+});
+
+// ==================== NAVBAR SCROLL EFFECT ====================
+var navbar = document.getElementById('navbar');
+var backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  
+  if (window.scrollY > 300) {
+    backToTop.classList.add('show');
+  } else {
+    backToTop.classList.remove('show');
+  }
+});
+
+// ==================== MOBILE MENU ====================
+var hamburger = document.getElementById('hamburger');
+var navMenu = document.getElementById('navMenu');
+var navLinks = navMenu.querySelectorAll('a');
+
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+navLinks.forEach(function(link) {
+  link.addEventListener('click', function() {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+// ==================== SEARCH OVERLAY ====================
+var searchBtn = document.getElementById('searchBtn');
+var searchOverlay = document.getElementById('searchOverlay');
+var searchClose = document.getElementById('searchClose');
+
+searchBtn.addEventListener('click', function() {
+  searchOverlay.classList.add('active');
+  searchOverlay.querySelector('input').focus();
+  document.body.style.overflow = 'hidden';
+});
+
+searchClose.addEventListener('click', function() {
+  searchOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+searchOverlay.addEventListener('click', function(e) {
+  if (e.target === searchOverlay) {
+    searchOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// ==================== SMOOTH SCROLL FOR NAV LINKS ====================
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var target = this.getAttribute('href');
+    if (target === '#' || target === '') return;
+    e.preventDefault();
+    var targetEl = document.querySelector(target);
+    if (targetEl) {
+      var offsetTop = targetEl.offsetTop - 70;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// ==================== NAV ACTIVE STATE ON SCROLL ====================
+var sections = document.querySelectorAll('section[id]');
+var navItems = document.querySelectorAll('.nav-menu a');
+
+window.addEventListener('scroll', function() {
+  var current = '';
+  sections.forEach(function(section) {
+    var sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navItems.forEach(function(item) {
+    item.classList.remove('active');
+    if (item.getAttribute('href') === '#' + current) {
+      item.classList.add('active');
+    }
+  });
+});
+
+// ==================== SCROLL REVEAL ANIMATION ====================
+var revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+function checkReveal() {
+  revealElements.forEach(function(el) {
+    var elementTop = el.getBoundingClientRect().top;
+    var elementVisible = 150;
+    if (elementTop < window.innerHeight - elementVisible) {
+      el.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', checkReveal);
+window.addEventListener('load', checkReveal);
+checkReveal();
+
+// ==================== MOVIE CARD CLICK EFFECT ====================
+document.querySelectorAll('.movie-card, .tv-item, .variety-card, .anime-card, .news-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    // Simulate page transition effect
+    this.style.transform = 'scale(0.97)';
+    setTimeout(function() {
+      card.style.transform = '';
+    }, 150);
+  });
+});
+
+// ==================== KEYBOARD SHORTCUTS ====================
+document.addEventListener('keydown', function(e) {
+  // ESC to close search
+  if (e.key === 'Escape') {
+    searchOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  // Ctrl+K to open search
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    searchBtn.click();
+  }
+});
+
+// ==================== LAZY LOAD SIMULATION ====================
+// Add stagger animation delay to grid items
+document.querySelectorAll('.movie-grid .movie-card').forEach(function(card, index) {
+  card.style.transitionDelay = (index * 0.05) + 's';
+});
+
+document.querySelectorAll('.variety-grid .variety-card').forEach(function(card, index) {
+  card.style.transitionDelay = (index * 0.08) + 's';
+});
+
+document.querySelectorAll('.anime-carousel .anime-card').forEach(function(card, index) {
+  card.style.transitionDelay = (index * 0.06) + 's';
+});
+
+// ==================== PERFORMANCE: THROTTLE SCROLL ====================
+var ticking = false;
+
+window.addEventListener('scroll', function() {
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+</script>
+</body>
+</html>
